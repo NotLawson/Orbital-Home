@@ -21,6 +21,10 @@ elif (bootfail==True):
 def pwr_to_pin(pin, state, board=0):
     global board_name
     board_name[board].digital[pin].write(state)
-    new_msg("Pin "+str(pin)+" set to state "+str(state), board_name[board],name)
-
+    new_msg("Pin "+str(pin)+" set to state "+str(state), name)
+def a_read(pin, board=0):
+    it = util.Iterator(board)
+    it.start()
+    board_name[board].analog[pin].enable_reporting()
+    return board_name[board].analog[pin].read()
     

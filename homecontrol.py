@@ -33,7 +33,7 @@ exec(setup_content[3])
 automation_num = int(setup_content[4])
 automation_add = 0
 while (automation_add<automation_num):
-    imp.import_module(automations[0])
+    imp.import_module(automations[automation_add])
     automation_add+=1
 
 new_msg("STARTING...",name)

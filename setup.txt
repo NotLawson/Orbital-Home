@@ -1,5 +1,5 @@
-ftu=False
+ftu=True
 addons=['arduino','TEST']
 2
-automations=['uno_auto',]
+automations=['uno_auto']
 1

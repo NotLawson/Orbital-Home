@@ -6,15 +6,15 @@ from time import sleep
 from homecontrollib import *
 mute=[False,False]
 def run():
-    if (datetime.now().strftime('%H:%M')=='14:10'):
-        pwr_to_pin(13,1,0)
+    if (datetime.now().strftime('%H:%M')=='12:30'):
+        pwr_to_pin(8,1,0)
         myobj = gTTS(text="It is "+datetime.now().strftime('%H:%M'), lang='en', slow=False)
         myobj.save('gtts.mp3')
         system('start gtts.mp3')
         sleep(60)
         new_msg('ON','uno auto')
-    if (datetime.now().strftime('%H:%M')=='14:40'):
-        pwr_to_pin(13,0)
+    if (datetime.now().strftime('%H:%M')=='12:35'):
+        pwr_to_pin(8,0)
         myobj = gTTS(text="It is "+datetime.now().strftime('%H:%M'), lang='en', slow=False)
         myobj.save('gtts.mp3')
         system('start gtts.mp3')
