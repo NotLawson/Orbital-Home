@@ -1,2 +1,2 @@
 1
-['test-lights','led1','Arduino Uno 1 LED 1','arduino',['on="1"','off="0"'],'COM5', 13]
+'test_lights'

@@ -5,13 +5,13 @@ import importlib as imp
 from datetime import datetime
 from homecontrollib import *
 #####def#########
-name='HOME_CONTROL'
+name='ORBITAL_HOME'
 message_state = ["","","",]
 mute=[False, False]
 message_structure=(message_state[0]+" -- "+message_state[1]+": "+message_state[2])
 
 ####SETUP#######
-print("HOME CONTROL")
+print("ORBITAL HOME")
 new_msg("Checking for pre-use...",name)
 setup = open("setup.txt")
 setup_content = setup.readlines()
@@ -41,7 +41,7 @@ home_run = 0
 home_run_2_auto = int(setup_content[4])
 home_run_3_app = int(setup_content[2])
 new_msg('STARTED',name)
-import uno_auto
+
 while (0==0):
     run=(automations[home_run]+'.run()')
     exec(run)
