@@ -40,8 +40,8 @@ new_msg("STARTING...",name)
 home_run = 0
 home_run_2_auto = int(setup_content[4])
 home_run_3_app = int(setup_content[2])
-import uno_auto
 new_msg('STARTED',name)
+import uno_auto
 while (0==0):
     run=(automations[home_run]+'.run()')
     exec(run)

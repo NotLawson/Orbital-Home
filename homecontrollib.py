@@ -1,8 +1,7 @@
 message_state = ["","","",]
-
 from datetime import datetime
 def new_msg(message, name):   
-    global mute
+    global board
     message_state[0] = str(datetime.now().strftime('%H:%M:%S'))
     message_state[1] = name
     message_state[2] = message
@@ -11,4 +10,4 @@ def new_msg(message, name):
 #     mdlgw=open('mod.txt', 'w')
     #mdlgw.write(message_structure)
 
-    
+new_msg('TEST', 'TESR')   
