@@ -1,1 +1,1 @@
-'Test Lights','arduino','COM3','lawson'
+device_info=['Test Lights','arduino','COM3','lawson']

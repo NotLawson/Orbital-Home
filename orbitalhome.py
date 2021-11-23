@@ -24,16 +24,33 @@ new_msg("Checking for add-ons...",name)
 addonnum = int(setup_content[2])
 addon_add = 0
 while (addon_add<addonnum):
-    imp.import_module(addons[addon_add])
+    ex='import '+addons[addon_add]
+    #imp.import_module(addons[addon_add])
+    exec(ex)
     addon_add+=1
-    
-    
+
+new_msg("Adding Devices",name)
+devices3=open('devices.txt')
+devices2=devices3.readlines()
+devices=int(devices2[0].strip('\n'))
+exec(devices2[1].strip('\''))
+for d in range(devices):
+    device_info_2=open(device_names[d]+'.device')
+    device_info_3=device_info_2.readlines()
+    exec(device_info_3[0])
+    if (device_info[1]=='arduino'):
+        arduino.setup_device(d)
+    device_type.append(device_info[2])
+
+
 new_msg("Checking for Automations...",name)
 exec(setup_content[3])
 automation_num = int(setup_content[4])
 automation_add = 0
 while (automation_add<automation_num):
-    imp.import_module(automations[automation_add])
+    ex = "import "+automations[automation_add]
+    exec(ex)
+    #imp.import_module(automations[automation_add])
     automation_add+=1
 
 new_msg("STARTING...",name)

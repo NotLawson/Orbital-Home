@@ -1,2 +1,2 @@
 1
-'test_lights'
+device_names=['test_lights']
