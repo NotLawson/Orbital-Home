@@ -1,50 +1,60 @@
 #HomeControl#
 
 #####IMPORTS#####
-import importlib as imp
-from datetime import datetime
 from homecontrollib import *
+import json
+import asyncio
 #####def#########
 name='HOME_CONTROL'
-message_state = ["","","",]
-mute=[False, False]
-message_structure=(message_state[0]+" -- "+message_state[1]+": "+message_state[2])
-
+version="indev"
 ####SETUP#######
-print("HOME CONTROL")
-new_msg("Checking for pre-use...",name)
-setup = open("setup.txt")
-setup_content = setup.readlines()
-setup.close()
-exec(setup_content[0])
-exec(setup_content[1])
-if (ftu==True):   ###### Tutorial
-    print("(needs work on)")
-new_msg("Checking for add-ons...",name)
-addonnum = int(setup_content[2])
-addon_add = 0
-while (addon_add<addonnum):
-    imp.import_module(addons[addon_add])
-    addon_add+=1
-    
-    
-new_msg("Checking for Automations...",name)
-exec(setup_content[3])
-automation_num = int(setup_content[4])
-automation_add = 0
-while (automation_add<automation_num):
-    imp.import_module(automations[automation_add])
-    automation_add+=1
+print("HOME CONTROL ("+version+")")
+json_setup = open("setup.json")
+setup=json.load(json_setup)
+json_setup.close()
+new_msg("Loading addons...",name, "INFO")
+addons = setup["addons"]
+i = 0
+for i in range(len(addons)):
+    new_msg("Importing "+addons[i], name, "INFO")
+    try:
+        exec("from addons import "+addons[i])
+        new_msg(addons[i]+" imported.", name, "INFO")
+    except:
+        new_msg(addons[i]+" import failed.", name, "ERROR")
+    i=+1
 
-new_msg("STARTING...",name)
-home_run = 0
-home_run_2_auto = int(setup_content[4])
-home_run_3_app = int(setup_content[2])
-new_msg('STARTED',name)
-import uno_auto
-while (0==0):
-    run=(automations[home_run]+'.run()')
-    exec(run)
-    home_run+=1
-    if (home_run==home_run_2_auto):
-        home_run=0
+    
+new_msg("Loading automations...",name, "INFO")
+auto = setup["automations"]
+i = 0
+for i in range(len(auto)):
+    new_msg("Importing "+auto[i], name, "INFO")
+    try:
+        exec("from automations import "+auto[i])
+        new_msg(auto[i]+" imported.", name, "INFO")
+    except:
+        new_msg(auto[i]+" import failed.", name, "ERROR")
+    i=+1
+
+new_msg('Starting Home control', name, 'INFO')
+i=0
+for i in range(len(addons)):
+    new_msg("Staring "+addons[i], name, "INFO")
+    try:
+        exec(addons[i]+".start()")
+        new_msg(addons[i]+" started.", name, "INFO")
+    except:
+        new_msg("failed to start "+addons[i], name, "ERROR")
+    i=+1
+
+i=0
+for i in range(len(auto)):
+    new_msg("Staring "+auto[i], name, "INFO")
+    try:
+        exec("asyncio.run("+auto[i]+".start())")
+        new_msg(auto[i]+" started.", name, "INFO")
+    except:
+        new_msg("failed to start "+auto[i], name, "ERROR")
+    i=+1
+new_msg("test",name,"INFO")
