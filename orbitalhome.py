@@ -56,7 +56,7 @@ for i in range(len(auto)):
         exec("asyncio.run("+auto[i]+".start())")
         new_msg(auto[i]+" started.", name, "INFO")
     except:
-        new_msg("failed to start "+[i], name, "ERROR")
+        new_msg("failed to start "+auto[i], name, "ERROR")
     i=+1
 new_msg("test",name,"INFO")
 
