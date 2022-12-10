@@ -9,7 +9,3 @@ def new_msg(message, name, msg_error):
     print(message_state[0]," -- ","(",msg_error,") ",message_state[1],": ",message_state[2])
     mod=open("mod.txt","a")
     mod.write(message_structure+"\n")
-async def time(h, m):
-    while h > int(datetime.now().strftime('%H')) or m >int(datetime.now().strftime('%M')):
-        await t.sleep(10)
-    return "done"

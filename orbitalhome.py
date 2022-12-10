@@ -4,6 +4,7 @@
 from homecontrollib import *
 import json
 import asyncio
+from homecontrollib import new_msg
 #####def#########
 name='HOME_CONTROL'
 version="indev"
@@ -55,6 +56,20 @@ for i in range(len(auto)):
         exec("asyncio.run("+auto[i]+".start())")
         new_msg(auto[i]+" started.", name, "INFO")
     except:
-        new_msg("failed to start "+auto[i], name, "ERROR")
+        new_msg("failed to start "+[i], name, "ERROR")
     i=+1
 new_msg("test",name,"INFO")
+
+async def addons_start():
+    global addons
+    global name
+    global new_msg
+    i=0
+    for i in range(len(addons)):
+        new_msg("Staring "+addons[i], name, "INFO")
+        try:
+            asyncio.create_task(exec(addons[i]+".start()"))
+            new_msg(addons[i]+" started.", name, "INFO")
+        except:
+            new_msg("failed to start "+addons[i], name, "ERROR")
+        i=+1
